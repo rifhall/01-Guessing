@@ -15,7 +15,7 @@ def start():
 
     #game making the number
     if dif == 'easy' or dif == 'medium' or dif == 'hard':
-        num = random.randrange(difficulty[a])
+        num = random.randrange(difficulty[dif])
 
         #sends the information here and the info from intitial guess to the actual game
         return guessinggame(intial(dif), num, difficulty[dif])
@@ -31,14 +31,27 @@ def intial(dif):
     if dif == 'easy':
         print('Chose a number between 0 and 100')
         guess = int(input())
+
+        #This is code for if they ever guess outside of the range
+        while guess <= 0 or guess > 100:
+            print("Please chose an number within the range")
+            guess = int(input())
         return guess
+
     elif dif == 'medium':
         print('Chose a number between 0 and 1000')
         guess = int(input())
+        while guess <= 0 or guess > 1000:
+            print("Please chose an number within the range")
+            guess = int(input())
         return guess
+
     elif dif == 'hard':
         print('Chose a number between 0 and 10000')
         guess = int(input())
+        while guess <= 0 or guess > 10000:
+            print("Please chose an number within the range")
+            guess = int(input())
         return guess
     
 
@@ -53,9 +66,9 @@ def guessinggame(guess, num, dif):
 
         #this is for if they guess higher, gives a different response based on how well the guess was
         if guess > num:
-            if (guess - num) / dif >= 0.5
+            if (guess - num) / dif >= 0.5:
                 phrases(1,0)
-            elif ((guess - num) / dif < 0.5) and ((guess - num) / dif > 0.25):
+            elif ((guess - num) / dif < 0.5) and ((guess - num) / dif > 0.15):
                 phrases(1,1)
             else:
                 phrases(1,2)
@@ -63,9 +76,9 @@ def guessinggame(guess, num, dif):
 
         #this is if they guess lower gives a different response based on how well the guess was
         elif guess < num:
-            if (guess - num) / dif >= 0.5
+            if (guess - num) / dif >= 0.5:
                 phrases(0,0)
-            elif ((guess - num) / dif < 0.5) and ((guess - num) / dif > 0.25):
+            elif ((guess - num) / dif < 0.5) and ((guess - num) / dif > 0.15):
                 phrases(0,1)
             else:
                 phrases(0,2)
@@ -73,11 +86,28 @@ def guessinggame(guess, num, dif):
         #this is the new guess they make and an update to the counter
         print("what is your new guess?")
         guess = int(input())
+        while guess <= 0 or guess > dif:
+            print("Please chose an number within the range")
+            guess = int(input())
         count += 1
     
+    #this is when the while loop is finished and youve gotten the right awnser
+    print("Youve guessed the right number!!!")
+    
+    #A vairable response based on your count
+    if count == 1:
+        print("Congrats, it only took you " + str(count) + " guess to get the awnser.")
+    elif count > 1 and count <= 5:
+        print("it took you " + str(count) + " guesses to get the awnser. Good work!")
+    elif count > 5 and count <= 10:
+        print("it took you " + str(count) + " guesses to get the awnser. Not Bad!")
+    elif count > 10 and count <= 20:
+        print("it took you " + str(count) + " guesses to get the awnser. You can do better. ")
+    else:
+        print("it took you " + str(count) + " guesses to get the awnser. You may want to try an easier difficulty")
 
+    
 
-        
 
 #a reference function to the initial game. Will spit out responses based on how well you did
 def phrases(highlo,place):
@@ -94,4 +124,7 @@ def phrases(highlo,place):
     else:
         print(" and you are very close")
 
+    
+    
 
+start()
