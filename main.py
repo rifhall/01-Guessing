@@ -8,6 +8,9 @@ assert sys.version_info >= (3,7), "This script requires at least Python 3.7"
 #dictionary for the difficulties
 difficulty = {'easy':100, 'medium':1000, 'hard':10000}
 
+#defenition for start time gets redefined later
+start_time = time.time()
+
 #Where the game starts
 def start():
     print("Hello Welcome to the Number Game!!!")
@@ -32,6 +35,7 @@ def start():
 
 #does the initial guess
 def intial(dif):
+    global start_time
     #makes decision based on game difficulty, returns the first guess
     if dif == 'easy':
         print('Chose a number between 0 and 100')
@@ -108,8 +112,8 @@ def guessinggame(guess, num, dif):
     
     #this is when the while loop is finished and youve gotten the right awnser
     print("Youve guessed the right number!!!")
-    print("Your total time was: ")
-    time.strftime("%M:%S", time.gmtime(elapsed_time))
+    print("Your total time was {:.2f} seconds".format(elapsed_time))
+
     
     
     #A vairable response based on your count
