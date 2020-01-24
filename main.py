@@ -1,4 +1,7 @@
 import sys, random
+import time
+
+
 
 assert sys.version_info >= (3,7), "This script requires at least Python 3.7"
 
@@ -25,6 +28,8 @@ def start():
         print('Didnt type in a correct response. Please write either easy medium or hard properly')
         return start()
 
+
+
 #does the initial guess
 def intial(dif):
     #makes decision based on game difficulty, returns the first guess
@@ -36,6 +41,8 @@ def intial(dif):
         while guess <= 0 or guess > 100:
             print("Please chose an number within the range")
             guess = int(input())
+
+        start_time = time.time()
         return guess
 
     elif dif == 'medium':
@@ -44,6 +51,8 @@ def intial(dif):
         while guess <= 0 or guess > 1000:
             print("Please chose an number within the range")
             guess = int(input())
+
+        start_time = time.time()
         return guess
 
     elif dif == 'hard':
@@ -52,8 +61,11 @@ def intial(dif):
         while guess <= 0 or guess > 10000:
             print("Please chose an number within the range")
             guess = int(input())
+
+        start_time = time.time()
         return guess
     
+
 
 #this is where the magic happens and the game runs 
 def guessinggame(guess, num, dif):
@@ -90,9 +102,15 @@ def guessinggame(guess, num, dif):
             print("Please chose an number within the range")
             guess = int(input())
         count += 1
+        
+    #this is where it does the time calculations
+    elapsed_time = time.time() - start_time
     
     #this is when the while loop is finished and youve gotten the right awnser
     print("Youve guessed the right number!!!")
+    print("Your total time was: ")
+    time.strftime("%M:%S", time.gmtime(elapsed_time))
+    
     
     #A vairable response based on your count
     if count == 1:
