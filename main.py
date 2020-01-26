@@ -36,7 +36,7 @@ def start():
 #does the initial guess
 def intial(dif):
     global start_time
-    #makes decision based on game difficulty, returns the first guess
+    #makes decision based on game difficulty, returns the first guess plus starts the timer
     if dif == 'easy':
         print('Chose a number between 0 and 100')
         guess = int(input())
@@ -110,7 +110,7 @@ def guessinggame(guess, num, dif):
     #this is where it does the time calculations
     elapsed_time = time.time() - start_time
     
-    #this is when the while loop is finished and youve gotten the right awnser
+    #this is when the while loop is finished and youve gotten the right awnser and the time it took
     print("Youve guessed the right number!!!")
     print("Your total time was {:.2f} seconds".format(elapsed_time))
 
@@ -127,7 +127,6 @@ def guessinggame(guess, num, dif):
         print("it took you " + str(count) + " guesses to get the awnser. You can do better. ")
     else:
         print("it took you " + str(count) + " guesses to get the awnser. You may want to try an easier difficulty")
-
     
 
 
@@ -146,7 +145,7 @@ def phrases(highlo,place):
     else:
         print(" and you are very close")
 
-    
-    
 
+
+#this runs the start function when the program is run
 start()
